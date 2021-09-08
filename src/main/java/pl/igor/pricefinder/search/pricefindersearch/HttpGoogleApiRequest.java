@@ -8,24 +8,22 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
 public class HttpGoogleApiRequest implements CommandLineRunner {
 
+    public static final String KEY = "AIzaSyBBPdvGmJBXtrvqUaU7jzpipfzA7roteQM";
+    public static final String CX = "c6bc8407bea1ee452";
+    public static final String QUERY_STRING = "fuel cell rebel";
+
     @Override
     public void run(String... args) throws Exception {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("key", "AIzaSyBBPdvGmJBXtrvqUaU7jzpipfzA7roteQM");
-        parameters.put("cx", "c6bc8407bea1ee452");
-        parameters.put("q", "fuel cell rebel");
+        parameters.put("key", KEY);
+        parameters.put("cx", CX);
+        parameters.put("q", QUERY_STRING);
 
         WebClient client = WebClient.builder()
                 .baseUrl("https://www.googleapis.com")
@@ -33,8 +31,10 @@ public class HttpGoogleApiRequest implements CommandLineRunner {
                 .defaultUriVariables(parameters)
                 .build();
 
+        String params = String.format("?key=%s&cx=%s&q=%s", KEY, CX, QUERY_STRING);
+
         WebClient.RequestHeadersUriSpec<?> requestHeadersUriSpec = client.get();
-        WebClient.RequestHeadersSpec<?> uri = requestHeadersUriSpec.uri("/customsearch/v1");
+        WebClient.RequestHeadersSpec<?> uri = requestHeadersUriSpec.uri("/customsearch/v1" + params);
         Mono<String> rspns = uri.exchangeToMono(response -> {
             if (response.statusCode()
                     .equals(HttpStatus.OK)) {
