@@ -1,0 +1,12 @@
+application:
+  search:
+    config:
+      maxOngoingSearches: 4
+      taskDelayInSeconds: 1
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pricesearch
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: postgres

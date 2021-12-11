@@ -1,0 +1,13 @@
+application:
+  search:
+    config:
+      maxOngoingSearches: 4
+      taskDelayInSeconds: 1
+
+spring:
+  codec:
+    max-in-memory-size: 10MB
+  jpa:
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
