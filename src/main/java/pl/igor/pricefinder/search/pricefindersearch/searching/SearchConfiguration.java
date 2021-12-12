@@ -3,6 +3,7 @@ package pl.igor.pricefinder.search.pricefindersearch.searching;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import pl.igor.pricefinder.search.pricefindersearch.searching.infrastructure.*;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.JsoupScraper;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchFactory;
@@ -64,11 +65,13 @@ public class SearchConfiguration {
     }
 
     @Bean
+    @Profile({"!test"})
     public CsvProductsSaver csvProductsSaver() {
         return new CsvProductsSaver("/home/nomad/Repos/pricefinder/price-finder-core/src/testfiles/nb.csv");
     }
 
     @Bean
+    @Profile({"!test"})
     public JpaPostgresProductRepository jpaPostgresProductRepository(JpaProductRepository jpaProductRepository) {
         return new JpaPostgresProductRepository(jpaProductRepository);
     }
@@ -79,6 +82,7 @@ public class SearchConfiguration {
     }
 
     @Bean
+    @Profile({"!test"})
     public DbProductsSaver dbProductsSaver(ProductService productService) {
         return new DbProductsSaver(productService);
     }
