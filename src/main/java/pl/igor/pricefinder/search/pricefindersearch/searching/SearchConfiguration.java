@@ -88,8 +88,15 @@ public class SearchConfiguration {
     }
 
     @Bean
-    public Searcher newBalanceSiteSearcher(@Qualifier("dbProductsSaver") ProductsSaver productSaver) {
+    @Profile({"!test"})
+    public SearchIdGenerator searchIdGenerator() {
+        return new DbSearchIdGenerator();
+    }
+
+    @Bean
+    public Searcher newBalanceSiteSearcher(SearchIdGenerator searchIdGenerator, @Qualifier("dbProductsSaver") ProductsSaver productSaver) {
         return SearchFactory.buildSiteSearch().withName("Search All products in New Balance site")
+                .addStep(StepCreator.createConfigurationStep(searchIdGenerator))
                 .addStep(StepCreator.createNewBalanceFindMenuLinksStep("https://nbsklep.pl/", new JsoupScraper()))
                 .addStep(StepCreator.createSplitMenuLinksStep(StepCreator.createSearchNewBalanceUrlStepFactory(new JsoupScraper(), new SpringWebClientProvider())))
                 .addStep(StepCreator.createSaveStep(productSaver))

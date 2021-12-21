@@ -5,11 +5,15 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+
 @Getter
 @Builder
 @ToString
 @EqualsAndHashCode
 public class Product {
+    private Long searchId;
+    private LocalDate searchDate;
     private String source;
     private String itemId;
     private String name;

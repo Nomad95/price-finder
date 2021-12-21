@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.dto.Product;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Queue;
 
@@ -28,6 +29,12 @@ class SearchState {
     @Builder.Default
     @Getter(value = AccessLevel.NONE)
     private List<Product> products = Lists.newArrayList(); //TODO: max  products
+
+    @Getter(value = AccessLevel.PACKAGE)
+    private Long searchId;
+
+    @Getter(value = AccessLevel.PACKAGE)
+    private LocalDate searchDate;
 
     void addLinkToVisit(String link) {
         linksToVisit.offer(link);
@@ -55,6 +62,14 @@ class SearchState {
 
     void removeProducts(List<Product> products) {
         this.products.removeAll(products);
+    }
+
+    void setSearchId(Long id) {
+        this.searchId = id;
+    }
+
+    void setSearchDate(LocalDate date) {
+        this.searchDate = date;
     }
 }
 

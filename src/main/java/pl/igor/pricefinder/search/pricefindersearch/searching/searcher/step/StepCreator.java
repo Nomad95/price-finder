@@ -1,6 +1,7 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step;
 
 import pl.igor.pricefinder.search.pricefindersearch.searching.ProductsSaver;
+import pl.igor.pricefinder.search.pricefindersearch.searching.SearchIdGenerator;
 import pl.igor.pricefinder.search.pricefindersearch.searching.WebClientProvider;
 import pl.igor.pricefinder.search.pricefindersearch.searching.WebsiteScrapper;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchStep;
@@ -22,4 +23,7 @@ public class StepCreator {
         return url -> new NewBalanceSearchUrl(new SearchState(), websiteScrapper, webClientProvider, url);
     }
 
+    public static SearchStep createConfigurationStep(SearchIdGenerator searchIdGenerator) {
+        return new ConfigurationStep(new SearchState(), searchIdGenerator);
+    }
 }

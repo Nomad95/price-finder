@@ -9,6 +9,7 @@ import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchSte
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.dto.Product;
 
 import javax.annotation.concurrent.NotThreadSafe;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -113,4 +114,19 @@ abstract class AbstractSearchStep implements SearchStep {
         searchState.removeProducts(products);
     }
 
+    protected void setSearchId(Long id) {
+        searchState.setSearchId(id);
+    }
+
+    protected void setSearchDateAsNow() {
+        searchState.setSearchDate(LocalDate.now());
+    }
+
+    protected Long getSearchId() {
+        return searchState.getSearchId();
+    }
+
+    protected LocalDate getSearchDate() {
+        return searchState.getSearchDate();
+    }
 }

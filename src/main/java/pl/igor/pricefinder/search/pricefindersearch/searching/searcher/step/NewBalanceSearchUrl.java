@@ -30,7 +30,7 @@ public class NewBalanceSearchUrl extends AbstractSearchStep {
     private final String url;
 
     public NewBalanceSearchUrl(@NonNull SearchState searchState,
-                               WebsiteScrapper jsoupScraper, WebClientProvider webClientProvider, @NonNull String url) {
+                               @NonNull WebsiteScrapper jsoupScraper, @NonNull WebClientProvider webClientProvider, @NonNull String url) {
         super(searchState);
         this.scrapper = jsoupScraper;
         this.webClientProvider = webClientProvider;
@@ -127,6 +127,8 @@ public class NewBalanceSearchUrl extends AbstractSearchStep {
         for (JsonElement item : items) {
             JsonObject itemObject = item.getAsJsonObject();
             Product product = Product.builder()
+                    .searchId(getSearchId())
+                    .searchDate(getSearchDate())
                     .source("New Balance")
                     .itemId(itemObject.get("id").getAsString())
                     .name(itemObject.get("name").getAsString())
