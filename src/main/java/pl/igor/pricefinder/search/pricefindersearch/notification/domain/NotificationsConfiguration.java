@@ -6,17 +6,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class NotificationsConfiguration {
 
-    NotificationFacade notificationFacade(ProductsRepository productsRepository) {
-        return new NotificationFacade(new NotificationService(productsRepository));
+    NotificationFacade notificationFacade(UserNotificationStrategyQuery userNotifQuery, ProductsQuery productsRepository, UserRuleRepository userRuleRepository) {
+        return new NotificationFacade(new NotificationService(userNotifQuery), userRuleRepository, productsRepository, new Creator());
     }
 
     @Bean
-    NotificationFacade notificationFacade(NotificationService notificationService) {
-        return new NotificationFacade(notificationService);
+    NotificationFacade notificationFacade(NotificationService notificationService, UserRuleRepository userRuleRepository, ProductsQuery productsQuery) {
+        return new NotificationFacade(notificationService, userRuleRepository, productsQuery, new Creator());
     }
 
     @Bean
-    NotificationService notificationService(ProductsRepository productsRepository) {
-        return new NotificationService(productsRepository);
+    NotificationService notificationService(UserNotificationStrategyQuery userNotifQuery) {
+        return new NotificationService(userNotifQuery);
     }
 }

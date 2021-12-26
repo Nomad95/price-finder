@@ -73,6 +73,8 @@ dependencies {
     //postgres
     runtimeOnly 'org.postgresql:postgresql'
 
+    //mail
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.5.6'
 
 }
 

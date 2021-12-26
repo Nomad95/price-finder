@@ -15,3 +15,14 @@ spring:
   sql:
     init:
       mode: always
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: pricefinder.notifications@gmail.com
+    password: M$PY49zCHr6Kr$&1sTMdwR2%
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
