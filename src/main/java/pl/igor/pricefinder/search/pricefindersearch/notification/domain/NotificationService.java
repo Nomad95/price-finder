@@ -19,7 +19,7 @@ class NotificationService {
 
         for (UUID userId : usersToNotify) {
             NotificationStrategy strategy = userNotificationStrategies.getForUser(userId);
-            strategy.sentNotification(productsForUser.getProductsForUser(userId));
+            strategy.sendNotification(productsForUser.getProductsForUser(userId));
         }
 
     }

@@ -141,10 +141,10 @@ class NotificationsFacadeTest extends Specification {
 
     def "should send notifications forall users with appropriate strategy"() {
         given:
-            def product1 = new ProductDto("New Balance 1080v11", new BigDecimal("100.00"))
-            def product2 = new ProductDto("Żal do włosów", new BigDecimal("10.00"))
-            def product3 = new ProductDto("Old balance - mydło", new BigDecimal("5.00"))
-            def product4 = new ProductDto("Penceta soniczna", new BigDecimal("1.00"))
+            def product1 = new ProductDto("New Balance 1080v11", new BigDecimal("100.00"), "https://asd")
+            def product2 = new ProductDto("Żal do włosów", new BigDecimal("10.00"), "https://asd")
+            def product3 = new ProductDto("Old balance - mydło", new BigDecimal("5.00"), "https://asd")
+            def product4 = new ProductDto("Penceta soniczna", new BigDecimal("1.00"), "https://asd")
 
             def map = new HashMap<UUID, List<ProductDto>>()
 
@@ -158,9 +158,9 @@ class NotificationsFacadeTest extends Specification {
 
         then:
             Mockito.verify(notificationStrategy, Mockito.times(1))
-                    .sentNotification(List.of(product1, product2))
+                    .sendNotification(List.of(product1, product2))
             Mockito.verify(notificationStrategy, Mockito.times(1))
-                    .sentNotification(List.of(product3, product4))
+                    .sendNotification(List.of(product3, product4))
     }
 
 }

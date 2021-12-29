@@ -10,4 +10,5 @@ import java.math.BigDecimal;
 public class ProductDto {
     String product;
     BigDecimal finalPrice;
+    String productLink;
 }

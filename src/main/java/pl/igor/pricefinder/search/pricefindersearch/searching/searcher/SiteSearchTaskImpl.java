@@ -2,6 +2,7 @@ package pl.igor.pricefinder.search.pricefindersearch.searching.searcher;
 
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEvent;
 import pl.igor.pricefinder.search.pricefindersearch.searching.SearchStatus;
 import pl.igor.pricefinder.search.pricefindersearch.searching.SearchTaskDelayer;
 
@@ -39,6 +40,11 @@ public class SiteSearchTaskImpl implements SearchTask {
     }
 
     @Override
+    public Iterable<ApplicationEvent> getEvents() {
+        return currentStep.getAllEvents();
+    }
+
+    @Override
     public SearchStatus call() throws Exception {
         log.info("Task {} started. Id = {}", taskName, taskId);
         startedAt = Instant.now();
@@ -48,6 +54,7 @@ public class SiteSearchTaskImpl implements SearchTask {
                 break;
             }
             try {
+                currentStep.init();
                 currentStep.executeStep();
                 if (isLastStep()) {
                     break;
@@ -67,7 +74,12 @@ public class SiteSearchTaskImpl implements SearchTask {
         isFinished = true;
         endedAt = Instant.now();
         log.info("Task {} Finished", taskName);
+
         return null;
+        //TODO: should send event
+        //TODO: should not overwrite searchParams
+        //TODO: some int test
+        //TODO: maybe search id should be set here???
     }
 
     private boolean isLastStep() {

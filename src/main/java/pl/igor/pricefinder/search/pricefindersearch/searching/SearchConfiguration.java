@@ -1,6 +1,7 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -50,8 +51,8 @@ public class SearchConfiguration {
     }
 
     @Bean
-    public OngoingTasks ongoingTasks(List<SearchTask> ongoingTasks, SearchConfig searchConfig) {
-        return new OngoingTasks(ongoingTasks, searchConfig.getMaxOngoingSearches());
+    public OngoingTasks ongoingTasks(List<SearchTask> ongoingTasks, SearchConfig searchConfig, ApplicationEventPublisher applicationEventPublisher) {
+        return new OngoingTasks(ongoingTasks, searchConfig.getMaxOngoingSearches(), applicationEventPublisher);
     }
 
     @Bean
@@ -94,6 +95,7 @@ public class SearchConfiguration {
     }
 
     @Bean
+    @Profile({"!test"})
     public Searcher newBalanceSiteSearcher(SearchIdGenerator searchIdGenerator, @Qualifier("dbProductsSaver") ProductsSaver productSaver) {
         return SearchFactory.buildSiteSearch().withName("Search All products in New Balance site")
                 .addStep(StepCreator.createConfigurationStep(searchIdGenerator))

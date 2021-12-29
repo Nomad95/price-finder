@@ -3,6 +3,7 @@ package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import pl.igor.pricefinder.search.pricefindersearch.searching.ProductsSaver;
+import pl.igor.pricefinder.search.pricefindersearch.searching.SearchCompleted;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.dto.Product;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class SaveProducts extends AbstractSearchStep {
         removeProducts(products);
 
         markStepAsDone();
+        addEvent(new SearchCompleted(this, getSearchId()));
         log.info("Saved products batch");
     }
 

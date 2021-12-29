@@ -1,5 +1,6 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching;
 
+import org.springframework.context.ApplicationEventPublisher;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchTask;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.Searcher;
 
@@ -28,7 +29,7 @@ public class SearchingTestConfiguration {
         return new TaskExecutor(taskWaitingQueue, scheduledExecutorService, taskExecutionDelayerSupplier, ongoingTasks);
     }
 
-    public OngoingTasks ongoingTasks(List<SearchTask> ongoingTasks, int capacity) {
-        return new OngoingTasks(ongoingTasks, capacity);
+    public OngoingTasks ongoingTasks(List<SearchTask> ongoingTasks, int capacity, ApplicationEventPublisher applicationEventPublisher) {
+        return new OngoingTasks(ongoingTasks, capacity, applicationEventPublisher);
     }
 }

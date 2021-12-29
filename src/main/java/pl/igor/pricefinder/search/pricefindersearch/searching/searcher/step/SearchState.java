@@ -4,9 +4,11 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.context.ApplicationEvent;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.dto.Product;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
@@ -35,6 +37,8 @@ class SearchState {
 
     @Getter(value = AccessLevel.PACKAGE)
     private LocalDate searchDate;
+
+    private List<ApplicationEvent> applicationEvents = new ArrayList<>();
 
     void addLinkToVisit(String link) {
         linksToVisit.offer(link);
@@ -70,6 +74,14 @@ class SearchState {
 
     void setSearchDate(LocalDate date) {
         this.searchDate = date;
+    }
+
+    List<ApplicationEvent> getApplicationEvents() {
+        return new ArrayList<>(applicationEvents);
+    }
+
+    void addEvent(ApplicationEvent applicationEvent) {
+        applicationEvents.add(applicationEvent);
     }
 }
 

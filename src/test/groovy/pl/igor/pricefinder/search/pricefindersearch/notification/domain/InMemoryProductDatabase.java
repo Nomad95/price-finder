@@ -53,7 +53,7 @@ class InMemoryProductDatabase implements ProductsQuery {
         }
 
         return stream
-                .map(p -> new ProductDto(p.getProductName(), p.getMaximumPrice()))
+                .map(p -> new ProductDto(p.getProductName(), p.getMaximumPrice(), "Https://blabla.pl"))
                 .collect(Collectors.toList());
     }
 

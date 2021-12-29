@@ -20,8 +20,12 @@ class NewBalanceFindMenuLinks extends AbstractSearchStep {
     NewBalanceFindMenuLinks(@NonNull SearchState searchState, @NonNull String mainUrl, WebsiteScrapper jsoupScraper) {
         super(searchState);
         this.mainUrl = mainUrl;
-        setBaseUrl(mainUrl);
         this.jsoupScraper = jsoupScraper;
+    }
+
+    @Override
+    public void init() {
+        setBaseUrl(mainUrl);
     }
 
     @Override

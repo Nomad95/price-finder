@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.math.BigInteger;
 
 @Transactional(isolation = Isolation.SERIALIZABLE)
 public class DbSearchIdGenerator implements SearchIdGenerator {
@@ -14,6 +15,6 @@ public class DbSearchIdGenerator implements SearchIdGenerator {
 
     @Override
     public synchronized Long generateId() {
-        return (Long) entityManager.createNativeQuery("select nextval('search_sequence')", Long.class).getSingleResult();
+        return ((BigInteger) entityManager.createNativeQuery("select nextval('search_sequence')").getSingleResult()).longValue();
     }
 }

@@ -5,5 +5,5 @@ import pl.igor.pricefinder.search.pricefindersearch.notification.dto.ProductDto;
 import java.util.List;
 
 public interface NotificationStrategy {
-    void sentNotification(List<ProductDto> products);
+    void sendNotification(List<ProductDto> products);
 }

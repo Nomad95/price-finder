@@ -1,5 +1,7 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher;
 
+import org.springframework.context.ApplicationEvent;
+
 public interface SearchStep {
     boolean hasNextStep();
 
@@ -14,4 +16,8 @@ public interface SearchStep {
     void appendNextStep(SearchStep searchLinkStep);
 
     SearchStep getNextStep();
+
+    void init();
+
+    Iterable<ApplicationEvent> getAllEvents();
 }

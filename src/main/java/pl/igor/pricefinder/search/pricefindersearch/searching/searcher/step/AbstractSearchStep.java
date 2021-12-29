@@ -3,6 +3,7 @@ package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchStep;
@@ -128,5 +129,18 @@ abstract class AbstractSearchStep implements SearchStep {
 
     protected LocalDate getSearchDate() {
         return searchState.getSearchDate();
+    }
+
+    public void init() {
+
+    }
+
+    @Override
+    public Iterable<ApplicationEvent> getAllEvents() {
+        return searchState.getApplicationEvents();
+    }
+
+    void addEvent(ApplicationEvent applicationEvent) {
+        searchState.addEvent(applicationEvent);
     }
 }

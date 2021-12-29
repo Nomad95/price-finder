@@ -1,6 +1,7 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching
 
 import org.assertj.core.util.Lists
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.EventGatherer
 import spock.lang.Specification
 
 import java.util.concurrent.Executors
@@ -8,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 import static org.awaitility.Awaitility.await
 
-class Test extends Specification {
+class SchedulingTaskTests extends Specification {
 
     public static final int MAX_ONGOING_TASK_COUNT = 4
 
@@ -17,13 +18,15 @@ class Test extends Specification {
     TaskExecutor taskExecutor
     TaskWaitingQueue taskWaitingQueue
     OngoingTasks ongoingTasks
+    EventGatherer applicationEventPublisher
 
     def setup() {
         def configuration = new SearchingTestConfiguration()
+        applicationEventPublisher = new EventGatherer()
         taskWaitingQueue = configuration.taskWaitingQueue()
         searchesHolder = configuration.searchesHolder(Lists.newArrayList())
         searchWorker = configuration.searchWorker(searchesHolder, taskWaitingQueue)
-        ongoingTasks = configuration.ongoingTasks(Lists.newArrayList(), MAX_ONGOING_TASK_COUNT)
+        ongoingTasks = configuration.ongoingTasks(Lists.newArrayList(), MAX_ONGOING_TASK_COUNT, applicationEventPublisher)
         taskExecutor = configuration.taskExecutor(taskWaitingQueue, Executors.newScheduledThreadPool(4),
                 new NoDelayTaskExecutionDelayer(), ongoingTasks)
     }
@@ -74,9 +77,31 @@ class Test extends Specification {
             }
     }
 
+    def "Finished searches should send all gathered events"() {
+        given:
+            availableSearchersWithEvents(10)
+
+        when: "Worker fetches all searches"
+            searchWorker.fetchNewSearches()
+
+        then: "Tasks completed after some time"
+            await().atMost(5000, TimeUnit.SECONDS).until {
+                simulateWorkingTaskExecutor()
+                taskWaitingQueue.getTaskCountInQueue() == 0
+                ongoingTasks.tasksSummary().ongoingTasksCount == 0
+                applicationEventPublisher.numberOfSentEvents() == 10
+            }
+    }
+
     def availableSearchers(int searchersCount) {
         for (i in 0..<searchersCount) {
             searchesHolder.addSearcher(TestSearcherFactory.createNewDefaultTestSearcher())
+        }
+    }
+
+    def availableSearchersWithEvents(int searchersCount) {
+        for (i in 0..<searchersCount) {
+            searchesHolder.addSearcher(TestSearcherFactory.createNewWithEventWhenFinishedTestSearcher())
         }
     }
 

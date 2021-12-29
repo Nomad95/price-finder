@@ -1,6 +1,7 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchTask;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 public class OngoingTasks {
     private final List<SearchTask> ongoingTasks;
     private final int capacity;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     synchronized void endAllTasks() {
         ongoingTasks.forEach(SearchTask::stopExecution);
@@ -30,6 +32,8 @@ public class OngoingTasks {
     synchronized void removeFinishedTasks() {
         List<SearchTask> finishedTasks = ongoingTasks.stream()
                 .filter(SearchTask::isFinished)
+                .peek(searchTask -> searchTask.getEvents()
+                        .forEach(applicationEventPublisher::publishEvent))
                 .collect(Collectors.toList());
 
         ongoingTasks.removeAll(finishedTasks);
