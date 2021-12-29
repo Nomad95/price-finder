@@ -13,7 +13,7 @@ import pl.igor.pricefinder.search.pricefindersearch.notification.domain.UserNoti
 import pl.igor.pricefinder.search.pricefindersearch.searching.SearchCompleted;
 
 @SpringBootTest
-@Import(TestSearchConfiguration.class)
+@Import({TestSearchConfiguration.class, TestNotificationConfiguration.class})
 @ActiveProfiles(profiles = "test")
 @TestPropertySource(locations="classpath:application.yml")
 public class AsynchronousEventTest {
@@ -27,10 +27,10 @@ public class AsynchronousEventTest {
     @Test
     void should() {
         applicationEventPublisher.publishEvent(new SearchCompleted(this, 1L));
-        System.out.println("elo");
 
         Mockito.verify(testUserNotificationStrategyQuery,
                 Mockito.timeout(5000)).getUserNotificationStrategies(Mockito.anyList());
 
     }
+
 }
