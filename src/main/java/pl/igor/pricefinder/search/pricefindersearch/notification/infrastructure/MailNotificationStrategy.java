@@ -1,11 +1,13 @@
 package pl.igor.pricefinder.search.pricefindersearch.notification.infrastructure;
 
 import lombok.AllArgsConstructor;
-import org.springframework.mail.SimpleMailMessage;
+import lombok.SneakyThrows;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import pl.igor.pricefinder.search.pricefindersearch.notification.domain.NotificationStrategy;
 import pl.igor.pricefinder.search.pricefindersearch.notification.dto.ProductDto;
 
+import javax.mail.internet.MimeMessage;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,11 +17,13 @@ public class MailNotificationStrategy implements NotificationStrategy {
     private final JavaMailSender emailSender;
 
     @Override
+    @SneakyThrows
     public void sendNotification(List<ProductDto> products) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("pricefinder.notifications@gmail.com");
-        message.setTo(mail);
-        message.setSubject("Znaleziono tani produkt!");
+        MimeMessage mimeMessage = emailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+        mimeMessageHelper.setFrom("pricefinder.notifications@gmail.com");
+        mimeMessageHelper.setTo(mail);
+        mimeMessageHelper.setSubject("Znaleziono tani produkt!");
         StringBuilder sb = new StringBuilder("Znaleziono nowe produkty godne Twojej uwagi: \n\n");
         products.forEach(product ->
                 sb
@@ -31,7 +35,7 @@ public class MailNotificationStrategy implements NotificationStrategy {
                         .append(product.getProductLink())
                         .append("\n")
         );
-        message.setText(sb.toString());
-        emailSender.send(message);
+        mimeMessageHelper.setText(sb.toString());
+        emailSender.send(mimeMessage);
     }
 }

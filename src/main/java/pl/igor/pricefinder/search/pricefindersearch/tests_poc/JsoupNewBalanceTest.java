@@ -1,4 +1,4 @@
-package pl.igor.pricefinder.search.pricefindersearch;
+package pl.igor.pricefinder.search.pricefindersearch.tests_poc;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

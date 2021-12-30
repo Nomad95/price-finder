@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 public class ProductMapper {
     Collection<ProductEntity> mapAll(Collection<Product> products) {
         return products.stream().map(productDto -> ProductEntity.builder()
+                .searchId(productDto.getSearchId())
+                .searchDate(productDto.getSearchDate())
                 .itemId(productDto.getItemId())
                 .source(productDto.getSource())
                 .name(productDto.getName())

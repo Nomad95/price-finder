@@ -1,4 +1,4 @@
-package pl.igor.pricefinder.search.pricefindersearch;
+package pl.igor.pricefinder.search.pricefindersearch.tests_poc;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

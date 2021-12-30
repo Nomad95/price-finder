@@ -3,6 +3,7 @@ package pl.igor.pricefinder.search.pricefindersearch.searching.infrastructure;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Builder
@@ -15,6 +16,8 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long searchId;
+    private LocalDate searchDate;
     private String source;
     private String itemId;
     private String name;

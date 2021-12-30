@@ -1,4 +1,4 @@
-package pl.igor.pricefinder.search.pricefindersearch;
+package pl.igor.pricefinder.search.pricefindersearch.tests_poc;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -6,10 +6,10 @@ import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
-public class JsoupPepperTest {
+public class JsoupZalandoTest {
 
     public static void main(String[] args) throws IOException {
-        String loginUrl = "https://www.pepper.pl/promocje/skorzany-portfel-meski-pl-marki-loren-z-antykradziezowym-zabezpieczeniem-rfid-duzo-przegrodek-at-allegro-434124";
+        String loginUrl = "https://www.google.com/search?q=minecraft+toys&tbm=shop";
         String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
         Connection.Response resp = Jsoup.connect(loginUrl) //
                 .timeout(30000) //
@@ -17,8 +17,8 @@ public class JsoupPepperTest {
                 .header("Accept-Language", "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7")
                 .header("Accept-Encoding", "gzip, deflate, br")
                 .header("dnt", "1")
-                .header("Referer", "https://www.pepper.pl/")
-                .header("authority", "www.pepper.pl")
+                .header("Referer", "http://www.google.com/")
+                .header("authority", "www.google.com")
                 .header("sec-fetch-site", "none")
                 .header("sec-fetch-mode", "navigate")
                 .header("sec-fetch-user", "?1")

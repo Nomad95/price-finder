@@ -32,7 +32,7 @@ public class DbProductsQuery implements ProductsQuery {
                 .getResultList();
 
         return results.stream()
-                .map(record -> new ProductDto((String) record[0], new BigDecimal((String) record[1]), (String) record[2]))
+                .map(record -> new ProductDto((String) record[0], (BigDecimal) record[1], (String) record[2]))
                 .collect(Collectors.toList());
     }
 }
