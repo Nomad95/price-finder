@@ -1,6 +1,6 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step
 
-import pl.igor.pricefinder.search.pricefindersearch.searching.ProductsSaver
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.ProductsSaver
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.dto.Product
 import spock.lang.Specification
 

@@ -1,6 +1,6 @@
 package pl.igor.pricefinder.search.pricefindersearch;
 
-import pl.igor.pricefinder.search.pricefindersearch.searching.SearchIdGenerator;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchIdGenerator;
 
 import java.util.concurrent.atomic.AtomicLong;
 

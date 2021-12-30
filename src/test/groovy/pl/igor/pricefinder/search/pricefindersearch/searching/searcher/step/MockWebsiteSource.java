@@ -1,7 +1,7 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step;
 
 import lombok.AllArgsConstructor;
-import pl.igor.pricefinder.search.pricefindersearch.searching.WebsiteSource;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.WebsiteSource;
 
 import java.util.Optional;
 

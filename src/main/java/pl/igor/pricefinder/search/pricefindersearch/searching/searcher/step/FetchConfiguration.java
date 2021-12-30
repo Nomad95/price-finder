@@ -1,6 +1,6 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step;
 
-import pl.igor.pricefinder.search.pricefindersearch.searching.SiteConfigProvider;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SiteConfigProvider;
 
 public class FetchConfiguration extends AbstractSearchStep {
 

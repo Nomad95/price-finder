@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import pl.igor.pricefinder.search.pricefindersearch.notification.domain.UserNotificationStrategyQuery;
-import pl.igor.pricefinder.search.pricefindersearch.searching.SearchCompleted;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchCompleted;
 
 @SpringBootTest
 @Import({TestSearchConfiguration.class, TestNotificationConfiguration.class})

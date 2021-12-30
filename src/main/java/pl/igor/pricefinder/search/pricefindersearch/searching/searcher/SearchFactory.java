@@ -1,8 +1,6 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher;
 
 
-import pl.igor.pricefinder.search.pricefindersearch.searching.SearchTaskDelayer;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Objects;

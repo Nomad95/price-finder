@@ -3,7 +3,7 @@ package pl.igor.pricefinder.search.pricefindersearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.igor.pricefinder.search.pricefindersearch.searching.TaskScheduler;
+import pl.igor.pricefinder.search.pricefindersearch.searching.core.TaskScheduler;
 
 @Component
 @RequiredArgsConstructor

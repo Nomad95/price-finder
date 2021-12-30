@@ -1,6 +1,6 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step;
 
-import pl.igor.pricefinder.search.pricefindersearch.searching.SearchIdGenerator;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchIdGenerator;
 
 import java.util.Objects;
 

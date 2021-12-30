@@ -2,8 +2,8 @@ package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step
 
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import pl.igor.pricefinder.search.pricefindersearch.searching.SpringWebClientProvider
-import pl.igor.pricefinder.search.pricefindersearch.searching.WebsiteScrapper
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.WebsiteScrapper
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.adapters.SpringWebClientProvider
 import spock.lang.Specification
 
 class NewBalanceSearchUrlTest extends Specification {

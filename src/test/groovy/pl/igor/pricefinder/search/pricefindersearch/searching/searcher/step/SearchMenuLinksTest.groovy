@@ -1,8 +1,8 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step
 
 import org.jsoup.Jsoup
-import pl.igor.pricefinder.search.pricefindersearch.searching.JsoupDocument
-import pl.igor.pricefinder.search.pricefindersearch.searching.WebsiteScrapper
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.WebsiteScrapper
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.adapters.JsoupDocument
 import spock.lang.Specification
 
 import static org.mockito.Mockito.mock

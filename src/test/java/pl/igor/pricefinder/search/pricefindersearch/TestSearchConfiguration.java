@@ -4,11 +4,11 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import pl.igor.pricefinder.search.pricefindersearch.searching.ProductsSaver;
 import pl.igor.pricefinder.search.pricefindersearch.searching.SearchConfiguration;
-import pl.igor.pricefinder.search.pricefindersearch.searching.infrastructure.ProductMapper;
-import pl.igor.pricefinder.search.pricefindersearch.searching.infrastructure.ProductRepository;
-import pl.igor.pricefinder.search.pricefindersearch.searching.infrastructure.ProductService;
+import pl.igor.pricefinder.search.pricefindersearch.searching.domain.ProductMapper;
+import pl.igor.pricefinder.search.pricefindersearch.searching.domain.ProductRepository;
+import pl.igor.pricefinder.search.pricefindersearch.searching.domain.ProductService;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.ProductsSaver;
 
 @TestConfiguration
 public class TestSearchConfiguration extends SearchConfiguration {

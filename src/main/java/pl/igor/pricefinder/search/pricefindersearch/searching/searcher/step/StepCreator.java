@@ -1,10 +1,6 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step;
 
-import pl.igor.pricefinder.search.pricefindersearch.searching.ProductsSaver;
-import pl.igor.pricefinder.search.pricefindersearch.searching.SearchIdGenerator;
-import pl.igor.pricefinder.search.pricefindersearch.searching.WebClientProvider;
-import pl.igor.pricefinder.search.pricefindersearch.searching.WebsiteScrapper;
-import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchStep;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.*;
 
 public class StepCreator {
     public static SearchStep createNewBalanceFindMenuLinksStep(String mainSite, WebsiteScrapper websiteScrapper) {

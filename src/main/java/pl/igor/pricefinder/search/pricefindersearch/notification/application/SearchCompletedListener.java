@@ -5,7 +5,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import pl.igor.pricefinder.search.pricefindersearch.notification.domain.NotificationFacade;
 import pl.igor.pricefinder.search.pricefindersearch.notification.dto.ProductsForUser;
-import pl.igor.pricefinder.search.pricefindersearch.searching.SearchCompleted;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchCompleted;
 
 @RequiredArgsConstructor
 public class SearchCompletedListener {

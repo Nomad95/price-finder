@@ -3,8 +3,6 @@ package pl.igor.pricefinder.search.pricefindersearch.searching.searcher;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEvent;
-import pl.igor.pricefinder.search.pricefindersearch.searching.SearchStatus;
-import pl.igor.pricefinder.search.pricefindersearch.searching.SearchTaskDelayer;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -42,6 +40,11 @@ public class SiteSearchTaskImpl implements SearchTask {
     @Override
     public Iterable<ApplicationEvent> getEvents() {
         return currentStep.getAllEvents();
+    }
+
+    @Override
+    public String getTaskName() {
+        return taskName;
     }
 
     @Override

@@ -8,7 +8,6 @@ import java.util.concurrent.ThreadLocalRandom;
 public enum UserAgents {
     I;
 
-    //TODO change visibility
     public String randomizeUserAgent() {
         int randomizedIndex = ThreadLocalRandom.current().nextInt(0, userAgents.size());
         return userAgents.get(randomizedIndex);

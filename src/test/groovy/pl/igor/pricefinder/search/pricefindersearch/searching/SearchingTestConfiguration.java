@@ -1,6 +1,7 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching;
 
 import org.springframework.context.ApplicationEventPublisher;
+import pl.igor.pricefinder.search.pricefindersearch.searching.core.*;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchTask;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.Searcher;
 

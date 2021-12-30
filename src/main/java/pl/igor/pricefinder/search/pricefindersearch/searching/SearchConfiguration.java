@@ -5,11 +5,10 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import pl.igor.pricefinder.search.pricefindersearch.searching.infrastructure.*;
-import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.JsoupScraper;
-import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchFactory;
-import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchTask;
-import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.Searcher;
+import pl.igor.pricefinder.search.pricefindersearch.searching.core.*;
+import pl.igor.pricefinder.search.pricefindersearch.searching.domain.*;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.*;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.adapters.*;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step.StepCreator;
 
 import java.util.List;
@@ -105,5 +104,7 @@ public class SearchConfiguration {
                 .withDelayer(searchTaskDelayer())
                 .build();
     }
+
+    //TODO: split this
 
 }
