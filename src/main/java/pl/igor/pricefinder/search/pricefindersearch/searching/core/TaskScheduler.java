@@ -1,7 +1,7 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.core;
 
 import lombok.RequiredArgsConstructor;
-import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.Searcher;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.RepeatableSearch;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ public class TaskScheduler {
     private final TaskWaitingQueue taskWaitingQueue;
 
     public void fetchNewSearches() {
-        List<Searcher> searchers = searchesHolder.getAvailableSearchers();
-        searchers.stream()
-                .map(Searcher::createSearchTask)
+        List<RepeatableSearch> repeatableSearches = searchesHolder.getAvailableSearchers();
+        repeatableSearches.stream()
+                .map(RepeatableSearch::createSearchTask)
                 .forEach(taskWaitingQueue::addTask);
 
         //executor class with adding tasks? has holded tasks etc - albo niech tylko executoruje a tutaj niech pobiera i dodaje do executora jesli trzeba. tak :)

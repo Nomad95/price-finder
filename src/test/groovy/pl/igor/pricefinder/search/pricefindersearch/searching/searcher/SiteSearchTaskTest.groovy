@@ -12,7 +12,7 @@ class SiteSearchTaskTest extends Specification {
         def task4 = new EmptyStep(4)
 
         given:
-            def siteSearchTask = SearchFactory.buildSiteSearch()
+            def siteSearchTask = SearchFactory.buildSiteSearcher()
                     .withName("Test Search")
                     .addStep(task1)
                     .addStep(task2)

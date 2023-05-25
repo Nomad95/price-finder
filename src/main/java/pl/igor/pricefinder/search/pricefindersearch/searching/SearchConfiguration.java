@@ -1,6 +1,5 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +8,6 @@ import pl.igor.pricefinder.search.pricefindersearch.searching.core.*;
 import pl.igor.pricefinder.search.pricefindersearch.searching.domain.*;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.*;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.adapters.*;
-import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.step.StepCreator;
 
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -20,7 +18,7 @@ import java.util.function.Supplier;
 @Configuration
 public class SearchConfiguration {
 
-    public static final int ONE_SEOND = 1000;
+    public static final int ONE_SECOND = 1000;
 
     @Bean
     public TaskScheduler searchWorker(SearchesHolder searchesHolder, TaskWaitingQueue taskWaitingQueue) {
@@ -28,8 +26,8 @@ public class SearchConfiguration {
     }
 
     @Bean
-    public SearchesHolder searchesHolder(List<Searcher> searchers) {
-        return new SearchesHolder(searchers);
+    public SearchesHolder searchesHolder(List<RepeatableSearch> repeatableSearches) {
+        return new SearchesHolder(repeatableSearches);
     }
 
     @Bean
@@ -46,7 +44,7 @@ public class SearchConfiguration {
 
     @Bean
     public SearchTaskDelayer searchTaskDelayer() {
-        return new FixedSearchTaskDelay(ONE_SEOND);
+        return new FixedSearchTaskDelay(ONE_SECOND);
     }
 
     @Bean
@@ -94,17 +92,9 @@ public class SearchConfiguration {
     }
 
     @Bean
-    @Profile({"!test"})
-    public Searcher newBalanceSiteSearcher(SearchIdGenerator searchIdGenerator, @Qualifier("dbProductsSaver") ProductsSaver productSaver) {
-        return SearchFactory.buildSiteSearch().withName("Search All products in New Balance site")
-                .addStep(StepCreator.createConfigurationStep(searchIdGenerator))
-                .addStep(StepCreator.createNewBalanceFindMenuLinksStep("https://nbsklep.pl/", new JsoupScraper()))
-                .addStep(StepCreator.createSplitMenuLinksStep(StepCreator.createSearchNewBalanceUrlStepFactory(new JsoupScraper(), new SpringWebClientProvider())))
-                .addStep(StepCreator.createSaveStep(productSaver))
-                .withDelayer(searchTaskDelayer())
-                .build();
+    public SitesProvider sitesProvider() {
+        return new FixedSiteProvider();
     }
-
     //TODO: split this
 
 }

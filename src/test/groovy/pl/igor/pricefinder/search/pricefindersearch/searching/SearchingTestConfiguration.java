@@ -2,8 +2,8 @@ package pl.igor.pricefinder.search.pricefindersearch.searching;
 
 import org.springframework.context.ApplicationEventPublisher;
 import pl.igor.pricefinder.search.pricefindersearch.searching.core.*;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.RepeatableSearch;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchTask;
-import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.Searcher;
 
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -16,8 +16,8 @@ public class SearchingTestConfiguration {
         return new TaskScheduler(searchesHolder, taskWaitingQueue);
     }
 
-    public SearchesHolder searchesHolder(List<Searcher> searchers) {
-        return new SearchesHolder(searchers);
+    public SearchesHolder searchesHolder(List<RepeatableSearch> repeatableSearches) {
+        return new SearchesHolder(repeatableSearches);
     }
 
     public TaskWaitingQueue taskWaitingQueue() {

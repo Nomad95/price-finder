@@ -96,6 +96,10 @@ abstract class AbstractSearchStep implements SearchStep {
         searchState.addProduct(product);
     }
 
+    protected void addProducts(@NonNull List<Product> products) {
+        searchState.addProducts(products);
+    }
+
     protected String getBaseUrl() {
         return searchState.getBaseUrl();
     }

@@ -83,6 +83,7 @@ public class SiteSearchTaskImpl implements SearchTask {
         //TODO: should not overwrite searchParams
         //TODO: some int test
         //TODO: maybe search id should be set here???
+        //TODO: should save this search that happened
     }
 
     private boolean isLastStep() {

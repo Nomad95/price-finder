@@ -2,25 +2,25 @@ package pl.igor.pricefinder.search.pricefindersearch.searching.core;
 
 import groovy.transform.EqualsAndHashCode;
 import org.springframework.context.ApplicationEvent;
+import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.RepeatableSearch;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchStatus;
 import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.SearchTask;
-import pl.igor.pricefinder.search.pricefindersearch.searching.searcher.Searcher;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 class TestSearcherFactory {
-    static Searcher createNewDefaultTestSearcher() {
-        return new DefaultSearcher();
+    static RepeatableSearch createNewDefaultTestSearcher() {
+        return new DefaultRepeatableSearch();
     }
 
-    static Searcher createNewWithEventWhenFinishedTestSearcher() {
-        return new EventWhenFinishSearcher();
+    static RepeatableSearch createNewWithEventWhenFinishedTestSearcher() {
+        return new EventWhenFinishRepeatableSearch();
     }
 }
 
-class DefaultSearcher implements Searcher {
+class DefaultRepeatableSearch implements RepeatableSearch {
 
     @Override
     public SearchTask createSearchTask() {
@@ -28,7 +28,7 @@ class DefaultSearcher implements Searcher {
     }
 }
 
-class EventWhenFinishSearcher implements Searcher {
+class EventWhenFinishRepeatableSearch implements RepeatableSearch {
 
     @Override
     public SearchTask createSearchTask() {

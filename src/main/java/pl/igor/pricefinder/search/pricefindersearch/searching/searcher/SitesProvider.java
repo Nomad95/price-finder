@@ -1,6 +1,5 @@
 package pl.igor.pricefinder.search.pricefindersearch.searching.searcher;
 
-public interface Searcher {
-    SearchTask createSearchTask();
-
+public interface SitesProvider {
+    String getNextSiteToSearch();
 }

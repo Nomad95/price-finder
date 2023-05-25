@@ -26,3 +26,9 @@ spring:
           auth: true
           starttls:
             enable: true
+
+#logging:
+#  level:
+#    root: ERROR
+#    com.gargoylesoftware.htmlunit: INFO
+#    org.apache.http: INFO

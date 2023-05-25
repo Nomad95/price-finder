@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 @EqualsAndHashCode(of = "taskName")
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-public class SiteSearcher implements Searcher {
+public class SiteSearcher implements RepeatableSearch {
 
     @NonNull
     private final SearchTask searchTask;

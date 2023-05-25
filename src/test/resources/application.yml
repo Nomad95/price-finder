@@ -16,3 +16,4 @@ spring:
       on-profile: test
   main:
     allow-bean-definition-overriding: true
+

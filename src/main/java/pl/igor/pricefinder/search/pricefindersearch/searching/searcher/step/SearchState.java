@@ -56,6 +56,10 @@ class SearchState {
         products.add(product);
     }
 
+    void addProducts(List<Product> productList) {
+        products.addAll(productList);
+    }
+
     List<Product> getAllProducts() {
         return List.copyOf(products);
     }

@@ -22,4 +22,8 @@ public class StepCreator {
     public static SearchStep createConfigurationStep(SearchIdGenerator searchIdGenerator) {
         return new ConfigurationStep(new SearchState(), searchIdGenerator);
     }
+
+    public static SearchStep createConfigurationStep(SearchIdGenerator searchIdGenerator, String startUrl) {
+        return new ConfigurationStep(new SearchState(), searchIdGenerator, startUrl);
+    }
 }

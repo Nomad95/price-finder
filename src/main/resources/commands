@@ -1,0 +1,5 @@
+docker run \
+  --rm  -e "DEFAULT_LAUNCH_ARGS=[\"--disk-cache-size=0\", \"--disable-web-security\",  \"--remote-debugging-port=9222\"]" \
+  -p 3000:3000 -p 9222:9222 \
+  -e "MAX_CONCURRENT_SESSIONS=10" \
+  browserless/chrome:latest
